@@ -24,13 +24,16 @@ public class MyLogger {
 	public static Logger get(Level thisClassLevel, Level rootLevel) {
 		Logger log = Logger.getLogger(thisClass(1));
 		log.setLevel(thisClassLevel);
+		log.warning("SetLogLevel: "+thisClassLevel.getName());
 		root.setLevel(rootLevel);
+		log.warning("SetRootLogLevel: "+rootLevel.getName());
 		return log;
 	}
 
 	public static Logger get(Level thisClassLevel) {
 		Logger log = Logger.getLogger(thisClass(1));
 		log.setLevel(thisClassLevel);
+		log.warning("SetLogLevel: "+thisClassLevel.getName());
 		return log;
 	}
 
@@ -56,6 +59,7 @@ public class MyLogger {
 	}
 	
 	private static Logger root = Logger.getLogger("");
+	
 	static {		
 		Handler[] handlers = root.getHandlers();
 		for (Handler h:handlers)

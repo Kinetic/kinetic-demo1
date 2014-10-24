@@ -5,14 +5,22 @@ public class Stat {
 	long ops = 0;
 	String deviceName;
 	
-	void add(Stat s) {
+	Stat add(Stat s) {
 		bytes += s.bytes;
 		ops += s.ops;
+		return this;
 	}
 	
-	void sub(Stat s) {
+	Stat sub(Stat s) {
 		bytes -= s.bytes;
 		ops -= s.ops;
+		return this;
+	}
+	
+	Stat times(int i) {
+		bytes *= i;
+		ops *= i;
+		return this;
 	}
 	
 	static Stat add(Stat s1, Stat s2) {
@@ -32,8 +40,33 @@ public class Stat {
 	Stat (String s) {
 		deviceName = s;
 	}
+	
+	// deep copy
+	Stat (Stat s) {
+		this.bytes = s.bytes;
+		this.ops = s.ops;
+		this.deviceName = s.deviceName;
+	}
 
 	Stat () {
 		deviceName = "";
+	}
+	
+	Stat(int i, int j) {
+		bytes = i;
+		ops = j;
+	}
+	
+	public String toString() {
+		return "{"+deviceName+","+ops+","+bytes+"}";
+	}
+	
+	@Override
+	public boolean equals(Object x) {
+		if (x instanceof Stat) {
+			Stat s = (Stat)x;
+			return (s.bytes == this.bytes)&&(s.ops == this.ops);
+		}
+		return false;
 	}
 }

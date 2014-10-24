@@ -44,7 +44,7 @@ public class Dial extends JFrame implements ActionListener {
 		DefaultValueDataset dataset;
 
 
-		public DemoPanelA() {
+		public DemoPanelA(int max) {
 			super(new BorderLayout());
 
 			this.dataset = new DefaultValueDataset(10.0);
@@ -57,8 +57,8 @@ public class Dial extends JFrame implements ActionListener {
 			DialValueIndicator dvi = new DialValueIndicator(0);
 			plot.addLayer(dvi);
 
-			StandardDialScale scale = new StandardDialScale(0.0, 100,
-					240.0, -300.0, 10.0, 4);
+			StandardDialScale scale = new StandardDialScale(0.0, max,
+					240.0, -300.0, max/15, 4);
 			plot.addScale(0, scale);
 
 			plot.addPointer(new DialPointer.Pin());
@@ -82,8 +82,8 @@ public class Dial extends JFrame implements ActionListener {
 			Stat diff = Stat.sub(next,last);
 			last = next;
 			// TODO change the time constants to value
-			mbsPanel.dataset.setValue(diff.bytes*4);
-			opsPanel.dataset.setValue(diff.ops*4);
+			mbsPanel.dataset.setValue(diff.bytes*(1.0/1000000.0));
+			opsPanel.dataset.setValue(diff.ops*1.0);
 			break;
 		default:
 			throw new Error("Unknown action");
@@ -96,13 +96,13 @@ public class Dial extends JFrame implements ActionListener {
 		this.stats = stats;
 		
 		JPanel panel = new JPanel(new GridLayout(1, 2));
-		panel.add(new DemoPanelA());
-		panel.add(new DemoPanelA());
+		panel.add(mbsPanel = new DemoPanelA(150));
+		panel.add(opsPanel = new DemoPanelA(1500));
 
 		setContentPane(panel);
 
 		// TODO change the time constants to value
-		timer = new Timer(250, this);
+		timer = new Timer(1000, this);
 		timer.setActionCommand("TIMER");
 		timer.setRepeats(true);
 		timer.start();
