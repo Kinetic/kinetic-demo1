@@ -2,7 +2,11 @@ Demo1
 =====
 
 
-This is the beginning of a demonstration program, but it is not complete yet. 
+This is the beginning of a demonstration program. This program will discover drives and put up a system performance meter and a strip chart for each discovered device. 
+
+In each device, there are some parameters and a go/stop button. 
+
+To make the reads work, you must run the writes first. This is for each type (random/sequential), (large,small values).
 
 How to run the Demo
 =========
