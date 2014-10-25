@@ -37,5 +37,16 @@
   		<artifactId>testng</artifactId>
   		<version>6.8.8</version>
   	</dependency>
+	<dependency>
+		<groupId>com.seagate.kinetic</groupId>
+			<artifactId>kinetic-simulator</artifactId>
+		        <version>0.8.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.seagate.kinetic</groupId>
+			<artifactId>kinetic-client</artifactId>
+			<version>0.8.0.2</version>
+		</dependency>
+
   </dependencies>
 </project>
