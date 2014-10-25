@@ -124,7 +124,6 @@ public class KineticBench extends SwingWorker<Object, Object> {
 			while (!this.isCancelled()) {
 				loop++;
 				byte[] key = nextKey();
-				log.fine(new String(key));
 				outstanding.initiate(4);
 				if (write) {
 					EntryMetadata em = new EntryMetadata();
