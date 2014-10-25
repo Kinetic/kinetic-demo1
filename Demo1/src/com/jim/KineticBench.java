@@ -92,18 +92,26 @@ public class KineticBench extends SwingWorker<Object, Object> {
 	long loop;
 	long prev;
 
+	
+	
 	private byte[] nextKey() {
 		long x = prev;
 		if (sequential) {
 			x++;
-		} else {
-			long p = 1299709;
-			long a = 546677;
+		} else { // Random
+			// this is a Lehmer random number generator
+			//  http://en.wikipedia.org/wiki/Lehmer_random_number_generator
+			// with period of 1B+6 entries.
+			long p = 1000000007;
+			long a =  500000003;
 			x = (a * x) % p;
 		}
 		prev = x;
-		return String.format("%s%s%010d", sequential ? "s" : "r",
-				length > 10 ? "l" : "s", x).getBytes();
+
+		String s = String.format("%s%s%010d", sequential ? "s" : "r",
+				length > 10 ? "l" : "s", x);
+//		log.finest("next key is "+s);
+		return s.getBytes();
 	}
 
 	@Override
@@ -114,7 +122,7 @@ public class KineticBench extends SwingWorker<Object, Object> {
 			cc.setHost(host);
 			log.finest("Connecting to " + host);
 			c = AdvancedKineticClientFactory.createAdvancedClientInstance(cc);
-			log.finest("Connected  to " + host);
+//			log.finest("Connected  to " + host);
 			if (c == null)
 				throw new Error("really?");
 

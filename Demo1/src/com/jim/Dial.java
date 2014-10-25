@@ -1,14 +1,19 @@
 package com.jim;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 import org.jfree.chart.ChartPanel;
@@ -44,11 +49,13 @@ public class Dial extends JFrame implements ActionListener {
 		DefaultValueDataset dataset;
 
 
-		public DemoPanelA(int max) {
+		public DemoPanelA(int max, String name) {
 			super(new BorderLayout());
+		
+			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 			this.dataset = new DefaultValueDataset(10.0);
-
+		
 			DialPlot plot = new DialPlot();
 			plot.setDataset(dataset);
 
@@ -66,6 +73,13 @@ public class Dial extends JFrame implements ActionListener {
 			ChartPanel cp = new ChartPanel(new JFreeChart(plot));
 			cp.setPreferredSize(new Dimension(400, 400));
 			add(cp);
+			
+			JButton textArea = new JButton(name);
+			textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
+			Font f = textArea.getFont().deriveFont((float) 40.0);
+			textArea.setFont(f);
+			add(textArea);
+			
 		}
 	}
 	
@@ -96,8 +110,8 @@ public class Dial extends JFrame implements ActionListener {
 		this.stats = stats;
 		
 		JPanel panel = new JPanel(new GridLayout(1, 2));
-		panel.add(mbsPanel = new DemoPanelA(150));
-		panel.add(opsPanel = new DemoPanelA(1500));
+		panel.add(mbsPanel = new DemoPanelA(150, "MB/s"));
+		panel.add(opsPanel = new DemoPanelA(1500, "KVop/s"));
 
 		setContentPane(panel);
 
