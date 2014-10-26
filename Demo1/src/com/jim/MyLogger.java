@@ -18,30 +18,46 @@ public class MyLogger {
 		StackTraceElement[] ste = new RuntimeException().getStackTrace();
 		if (n>ste.length)
 			throw new Error("depth incorrect");
+		System.out.println(ste[n-1].getClassName()+", "+ste[n].getClassName());
 		return ste[n].getClassName();
 	}
 
 	public static Logger get(Level thisClassLevel, Level rootLevel) {
-		Logger log = Logger.getLogger(thisClass(1));
+		Logger log = Logger.getLogger(thisClass(2));
 		log.setLevel(thisClassLevel);
 		log.warning("SetLogLevel: "+thisClassLevel.getName());
+		conHdlr.setLevel(rootLevel);
 		root.setLevel(rootLevel);
 		log.warning("SetRootLogLevel: "+rootLevel.getName());
 		return log;
 	}
 
 	public static Logger get(Level thisClassLevel) {
-		Logger log = Logger.getLogger(thisClass(1));
+		Logger log = Logger.getLogger(thisClass(2));
 		log.setLevel(thisClassLevel);
 		log.warning("SetLogLevel: "+thisClassLevel.getName());
 		return log;
 	}
 
 	public static Logger get() {
-		Logger log = Logger.getLogger(thisClass(1));
+		Logger log = Logger.getLogger(thisClass(2));
 		return log;
 	}
 
+	public static void printLoggerHeirarchy(Logger l) {
+		while (l != null) {
+			System.out.println("Name: \""+l.getName()+"\"");
+			System.out.println("   Level:    "+l.getLevel().getName());		
+			System.out.println("   Filter:   "+l.getFilter());		
+			Handler ha[] = l.getHandlers();
+			System.out.println("   Handlers: "+ha.length);
+			for (Handler h:ha)  {
+				System.out.println("       "+h.getLevel().getName()+" "+h.getFilter()+" "+h.getFormatter());
+			}
+			System.out.println("   Parent: "+l.getParent());
+			l = l.getParent();
+		}
+	}
 	
 	static class myFormatter extends Formatter {
 
@@ -59,13 +75,13 @@ public class MyLogger {
 	}
 	
 	private static Logger root = Logger.getLogger("");
-	
+	private static Handler conHdlr = new ConsoleHandler();
+
 	static {		
 		Handler[] handlers = root.getHandlers();
 		for (Handler h:handlers)
 			root.removeHandler(h);
 		// log.setUseParentHandlers(false);
-		Handler conHdlr = new ConsoleHandler();
 		conHdlr.setFormatter(new myFormatter());
 		conHdlr.setLevel(Level.FINEST);
 		root.addHandler(conHdlr);

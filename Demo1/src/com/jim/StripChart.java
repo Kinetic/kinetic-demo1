@@ -99,6 +99,7 @@ public class StripChart extends JFrame implements WindowListener {
 		pack();
 		RefineryUtilities.positionFrameRandomly(this);
 		setVisible(true);
+		
 	}
 
 
