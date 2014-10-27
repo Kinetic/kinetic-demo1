@@ -127,6 +127,10 @@ public class StripChart extends JFrame implements WindowListener {
 		 */
 		public StripChartPanel() {
 			super(new BorderLayout());
+			
+			// TODO fix constant
+			bytes.setMaximumItemCount(240);
+			ops.setMaximumItemCount(240);
 
 			TimeSeriesCollection mbset = new TimeSeriesCollection(this.bytes);
 			TimeSeriesCollection kvset = new TimeSeriesCollection(this.ops);
@@ -148,7 +152,6 @@ public class StripChart extends JFrame implements WindowListener {
 			plot.setDataset(1, kvset);
 
 			NumberAxis xAxis1 = new NumberAxis("KV op/s");
-//			xAxis1.setUpperBound(100.0);
 			xAxis1.setLowerBound(0.0);
 			xAxis1.setAutoRange(true);
 
@@ -223,10 +226,9 @@ public class StripChart extends JFrame implements WindowListener {
 			case "TIMER":
 				// TODO fix constant
 				Stat delta = Stat.sub(stat, last).times(4);
-//				log.info(delta.toString());
 				Millisecond now = new Millisecond();
-				this.bytes.add(now, delta.bytes/1000000.0);
-				this.ops.add(now, delta.ops);
+				bytes.add(now, delta.bytes/1000000.0);
+				ops.add(now, delta.ops);
 				last = new Stat(stat);
 				break;
 			case "RUN":
