@@ -23,19 +23,24 @@ public class MyLogger {
 	}
 
 	public static Logger get(Level thisClassLevel, Level rootLevel) {
-		Logger log = Logger.getLogger(thisClass(2));
+		String thisclass = thisClass(2);
+		Logger log = Logger.getLogger(thisclass);
 		log.setLevel(thisClassLevel);
-		log.warning("SetLogLevel: "+thisClassLevel.getName());
+		log.finest("SetLog: "+thisclass+" Level: "+thisClassLevel.getName());
+
 		conHdlr.setLevel(rootLevel);
 		root.setLevel(rootLevel);
-		log.warning("SetRootLogLevel: "+rootLevel.getName());
+		log.finest("SetRootLogLevel: "+rootLevel.getName());
+
 		return log;
 	}
 
 	public static Logger get(Level thisClassLevel) {
-		Logger log = Logger.getLogger(thisClass(2));
+		String thisclass = thisClass(2);
+		Logger log = Logger.getLogger(thisclass);
 		log.setLevel(thisClassLevel);
-		log.warning("SetLogLevel: "+thisClassLevel.getName());
+		log.finest("SetLog: "+thisclass+" Level: "+thisClassLevel.getName());
+
 		return log;
 	}
 

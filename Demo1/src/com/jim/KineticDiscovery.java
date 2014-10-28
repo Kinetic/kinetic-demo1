@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 
 import javax.swing.SwingWorker;
 
+import kinetic.client.ClientConfiguration;
+
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -89,8 +91,15 @@ public class KineticDiscovery extends SwingWorker<Void, KineticDevice> {
 			log.fine(new String(p.getData()));
 			
 			String protocolVersion = root.get("protocol_version").asText();
-			if (!protocolVersion.startsWith("3"))
+			
+			// get the high level version information.
+			// TODO don't like this code.
+			String mypv = ClientConfiguration.getProtocolVersion().split("\\.")[0];
+			String pv = protocolVersion.split("\\.")[0];
+			if (!pv.equals(mypv)) {
+				log.warning("Drive protocol version "+pv+" is not compatible with the library version "+mypv+", ignoring.");
 				continue;
+			}
 
 			KineticDevice dev = new KineticDevice();
 			dev.port = root.get("port").asInt();

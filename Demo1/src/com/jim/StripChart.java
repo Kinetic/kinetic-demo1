@@ -90,7 +90,7 @@ public class StripChart extends JFrame implements WindowListener {
 	
 	
 	public StripChart(KineticDevice device) {
-		super(device.wwn+": "+device.model);
+		super(device.wwn+": "+device.model+": "+device.inet4.get(0));
 		this.stat = device.stat;
 		this.device = device;
 		demoPanel = new StripChartPanel();
