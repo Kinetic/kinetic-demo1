@@ -1,4 +1,4 @@
-Demo1
+Kinetic-demo1
 =====
 
 
