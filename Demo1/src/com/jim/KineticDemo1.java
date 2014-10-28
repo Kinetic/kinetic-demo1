@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * A demonstration application showing a time series chart where you can
  * dynamically add (random) data by clicking on a button.
  */
-class Demo1 {
+class KineticDemo1 {
 
 	static Logger log = MyLogger.get(Level.INFO, Level.INFO);
 	
