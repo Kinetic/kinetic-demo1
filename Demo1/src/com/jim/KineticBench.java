@@ -120,9 +120,9 @@ public class KineticBench extends SwingWorker<Object, Object> {
 			String host = dev.inet4.get(0);
 			ClientConfiguration cc = new ClientConfiguration();
 			cc.setHost(host);
-			log.finest("Connecting to " + host);
+			log.info("Connecting to " + host);
 			c = AdvancedKineticClientFactory.createAdvancedClientInstance(cc);
-//			log.finest("Connected  to " + host);
+			log.info("Connected  to " + host);
 			if (c == null)
 				throw new Error("really?");
 
@@ -155,6 +155,7 @@ public class KineticBench extends SwingWorker<Object, Object> {
 	}
 
 	KineticBench(KineticDevice dev, String order, String rw, String size) {
+				
 		this.dev = dev;
 		this.stat = dev.stat;
 

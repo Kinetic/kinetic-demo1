@@ -77,7 +77,7 @@ public class KineticDiscovery extends SwingWorker<Void, KineticDevice> {
 			byte[] b = new byte[64 * 1024];
 			DatagramPacket p = new DatagramPacket(b, b.length);
 			s.receive(p);
-
+			
 			ObjectMapper mapper = new ObjectMapper();
 			JsonNode root = mapper.readValue(p.getData(), JsonNode.class);
 
