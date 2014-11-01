@@ -120,11 +120,23 @@ public class KineticBench extends SwingWorker<Object, Object> {
 			String host = dev.inet4.get(0);
 			ClientConfiguration cc = new ClientConfiguration();
 			cc.setHost(host);
+			cc.setPort(dev.port);
 			log.info("Connecting to " + host);
 			c = AdvancedKineticClientFactory.createAdvancedClientInstance(cc);
 			log.info("Connected  to " + host);
-			if (c == null)
-				throw new Error("really?");
+			
+			// TODO make sure that the WWN is as expected. 
+//			AdminClientConfiguration acc = new AdminClientConfiguration();
+//			acc.setHost(host);
+//			acc.setPort(dev.tlsPort);
+//			KineticAdminClient ac = KineticAdminClientFactory.createInstance(acc);
+//			
+//			List<KineticLogType> logs = new ArrayList<KineticLogType>(1);
+//			logs.add(KineticLogType.CONFIGURATION);
+//			KineticLog log = ac.getLog(logs);
+//			
+//			kinetic.admin.Configuration conf = log.getConfiguration();
+//			conf.
 
 			loop = 0;
 			prev = 2; // this can not be 0 or 1.

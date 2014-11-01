@@ -28,7 +28,6 @@ public class MyLogger {
 		log.setLevel(thisClassLevel);
 		log.finest("SetLog: "+thisclass+" Level: "+thisClassLevel.getName());
 
-		conHdlr.setLevel(rootLevel);
 		root.setLevel(rootLevel);
 		log.finest("SetRootLogLevel: "+rootLevel.getName());
 
