@@ -31,7 +31,7 @@
 							</archive>
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<mainClass>com.jim.Demo1</mainClass>
+								<mainClass>com.jim.KineticDemo1</mainClass>
 							</manifest>
 							<finalName>Demo1-${project.version}</finalName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
@@ -44,7 +44,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.jim.Demo1</mainClass>
+							<mainClass>com.jim.KineticDemo1</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

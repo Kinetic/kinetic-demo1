@@ -38,7 +38,7 @@ class KineticDemo1 {
 		
 		// Choose a L&F
 		for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-			log.finest(()->{return "Installed L&F: " + info.getName();});
+            // log.finest(()->{return "Installed L&F: " + info.getName();});
 			if ("Mac OS X".equals(info.getName())) {
 				UIManager.setLookAndFeel(info.getClassName());
 			}
