@@ -10,9 +10,9 @@ public class KineticStatDemo {
 			KineticException, IOException {
 		KineticStatModel kineticStatModel = new KineticStatModel();
 		KineticStatView kineticStatView = new KineticStatView(
-				"Kinetic Stat Demo");
+				"Kinetic Statistics");
 		KineticOverviewView kineticOverviewView = new KineticOverviewView(
-				"Kinetic Drives Overview");
+				"Kinetic Drives Snapshot");
 		KineticStatController kineticStatController = new KineticStatController(
 				kineticStatModel, kineticStatView, kineticOverviewView);
 
