@@ -329,7 +329,7 @@ class KineticNode {
 		adminClientConfig.setHost(inet4.get(0));
 		adminClientConfig.setUseSsl(false);
 		adminClientConfig.setPort(port);
-		adminClientConfig.setRequestTimeoutMillis(1000);
+		adminClientConfig.setRequestTimeoutMillis(5000);
 		adminClient = KineticAdminClientFactory
 				.createInstance(adminClientConfig);
 	}
