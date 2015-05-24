@@ -10,5 +10,7 @@ To make the reads work, you must run the writes first. This is for each type (ra
 
 How to run the Demo
 =========
-1. mvn clean package
-2. java -jar ./target/Demo1-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+1. git clone https://github.com/Seagate/kinetic-demo1.git
+2. cd Demo1 
+3. mvn clean package
+4. java -jar ./target/Demo1-0.0.1-SNAPSHOT-jar-with-dependencies.jar
